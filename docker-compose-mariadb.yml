@@ -7,8 +7,8 @@ services:
     volumes:
       - /var/lib/marzneshin:/var/lib/marzneshin
     depends_on:
-      - mysql
-  mysql:
+      - mariadb
+  mariadb:
     image: mariadb:latest
     restart: always
     env_file: .env
