@@ -1,0 +1,19 @@
+services:
+  marzneshin:
+    image: dawsh/marzneshin:latest
+    restart: always
+    env_file: .env
+    network_mode: host
+    volumes:
+      - /var/lib/marzneshin:/var/lib/marzneshin
+    depends_on:
+      - mysql
+  mysql:
+    image: mysql:latest
+    restart: always
+    env_file: .env
+    network_mode: host
+    environment:
+      MYSQL_DATABASE: marzneshin
+    volumes:
+      - /var/lib/marzneshin/mysql:/var/lib/mysql
