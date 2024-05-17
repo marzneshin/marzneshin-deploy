@@ -1,23 +1,16 @@
-# marzneshin deployment scripts
-this repository contains deployment stuff related to marzneshin.
+# marzneshin deployment
+This repository contains deployment stuff related to marzneshin.
 
-change data in `.env` for take action.
+you could use the following urls in `.env` file according to the database you choose, remember to replace 12341234 with a strong password in case you expose the database in any ways.
 
-# MYSQL 
-```env
-SQLALCHEMY_DATABASE_URL = "mysql+pymysql://root:DB_PASSWORD@127.0.0.1/marzneshin"
-MYSQL_ROOT_PASSWORD = DB_PASSWORD
-```
+MariaDB is strongly recommended.
 
 # MARIADB
 ```env
-SQLALCHEMY_DATABASE_URL = "mysql+pymysql://root:DB_PASSWORD@127.0.0.1/marzneshin"
-MYSQL_ROOT_PASSWORD = DB_PASSWORD
+SQLALCHEMY_DATABASE_URL = "mariadb+pymysql://root:12341234@127.0.0.1/marzneshin"
 ```
 
-# POSTGRESQL (EXPERIMENTAL)
+# MYSQL 
 ```env
-SQLALCHEMY_DATABASE_URL = "postgresql://root:DB_PASSWORD@127.0.0.1/marzneshin"
-POSTGRESQL_ROOT_PASSWORD = DB_PASSWORD
+SQLALCHEMY_DATABASE_URL = "mysql+pymysql://root:12341234@127.0.0.1/marzneshin"
 ```
-
