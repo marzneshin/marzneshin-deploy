@@ -8,7 +8,7 @@ services:
       - /var/lib/marzneshin:/var/lib/marzneshin
     depends_on:
       - mariadb
-  mariadb:
+  db:
     image: mariadb:latest
     restart: always
     environment:
