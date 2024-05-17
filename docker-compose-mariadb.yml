@@ -7,7 +7,9 @@ services:
     volumes:
       - /var/lib/marzneshin:/var/lib/marzneshin
     depends_on:
-      - db
+      db:
+        condition: service_healthy
+        required: true
   marznode:
     image: dawsh/marznode:latest
     restart: always
