@@ -1,0 +1,38 @@
+services:
+  marzneshin:
+    image: dawsh/marzneshin:latest
+    restart: always
+    env_file: .env
+    network_mode: host
+    volumes:
+      - /var/lib/marzneshin:/var/lib/marzneshin
+    depends_on:
+      db:
+        condition: service_healthy
+        required: true
+  marznode:
+    image: dawsh/marznode:latest
+    restart: always
+    network_mode: host
+    environment:
+      SERVICE_ADDRESS: "127.0.0.1"
+      INSECURE: "True"
+      XRAY_EXECUTABLE_PATH: "/usr/local/bin/xray"
+      XRAY_ASSETS_PATH: "/usr/local/lib/xray"
+      XRAY_CONFIG_PATH: "/var/lib/marznode/xray_config.json"
+      SSL_KEY_FILE: "./server.key"
+      SSL_CERT_FILE: "./server.cert"
+    volumes:
+      - /var/lib/marznode:/var/lib/marznode
+  db:
+    image: mariadb:latest
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: 12341234
+      MARIADB_DATABASE: marzneshin
+    volumes:
+      - /var/lib/marzneshin/mysql:/var/lib/mysql
+    ports:
+      - "127.0.0.1:3306:3306"
+    healthcheck:
+      test: healthcheck.sh --connect
