@@ -11,9 +11,10 @@ services:
   mysql:
     image: mysql:latest
     restart: always
-    network_mode: host
     environment:
       MYSQL_ROOT_PASSWORD: 12341234
       MYSQL_DATABASE: marzneshin
+    ports:
+      - "127.0.0.1:3306:3306"
     volumes:
       - /var/lib/marzneshin/mysql:/var/lib/mysql
