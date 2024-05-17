@@ -11,8 +11,8 @@ services:
   mariadb:
     image: mariadb:latest
     restart: always
-    env_file: .env
     environment:
+      MARIADB_ROOT_PASSWORD: 12341234
       MYSQL_DATABASE: marzneshin
     volumes:
       - /var/lib/marzneshin/mysql:/var/lib/mysql
