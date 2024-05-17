@@ -12,8 +12,9 @@ services:
     image: mariadb:latest
     restart: always
     env_file: .env
-    network_mode: host
     environment:
       MYSQL_DATABASE: marzneshin
     volumes:
       - /var/lib/marzneshin/mysql:/var/lib/mysql
+    ports:
+      - "127.0.0.1:3306:3306"
