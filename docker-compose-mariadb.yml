@@ -13,7 +13,7 @@ services:
     restart: always
     environment:
       MARIADB_ROOT_PASSWORD: 12341234
-      MYSQL_DATABASE: marzneshin
+      MARIADB_DATABASE: marzneshin
     volumes:
       - /var/lib/marzneshin/mysql:/var/lib/mysql
     ports:
