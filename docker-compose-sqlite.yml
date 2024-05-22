@@ -1,0 +1,25 @@
+services:
+  marzneshin:
+    image: dawsh/marzneshin:latest
+    restart: always
+    env_file: .env
+    network_mode: host
+    environment:
+      SQLALCHEMY_DATABASE_URL: "sqlite:////var/lib/marzneshin/db.sqlite3"
+    volumes:
+      - /var/lib/marzneshin:/var/lib/marzneshin
+
+  marznode:
+    image: dawsh/marznode:latest
+    restart: always
+    network_mode: host
+    environment:
+      SERVICE_ADDRESS: "127.0.0.1"
+      INSECURE: "True"
+      XRAY_EXECUTABLE_PATH: "/usr/local/bin/xray"
+      XRAY_ASSETS_PATH: "/usr/local/lib/xray"
+      XRAY_CONFIG_PATH: "/var/lib/marznode/xray_config.json"
+      SSL_KEY_FILE: "./server.key"
+      SSL_CERT_FILE: "./server.cert"
+    volumes:
+      - /var/lib/marznode:/var/lib/marznode
