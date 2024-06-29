@@ -38,3 +38,5 @@ services:
       - "127.0.0.1:3306:3306"
     healthcheck:
       test: healthcheck.sh --connect
+      interval: 5s
+      retries: 4
